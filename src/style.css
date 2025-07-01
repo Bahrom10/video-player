@@ -1,0 +1,205 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+#app{
+    width: 100vw;
+    height: 100vh;
+}
+.video-player{
+    max-width: 100%;
+    max-height: 100%;
+    background-color: #000;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+.video-player * {
+    user-select: none;
+    outline: none;
+
+}
+.video-player-video{
+    width: 100%;
+    height: 100%;
+    outline: none;
+    max-height: 100%;
+    position: relative;
+}
+
+.video-player-bottom{
+    z-index: 99999999;
+    position: absolute;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 31px;
+    padding: 31px 54px;
+    backdrop-filter: blur(9.812939643859863px);
+    background: rgba(45, 45, 45, 0.65);
+    transition: all 1s ease-in-out;
+    button{
+        background: none;
+        border: none;
+        cursor: pointer;
+    }
+}
+.video-player-bottom:hover{
+    background-color: rgba(45, 45, 45, 0.7);
+}
+.video-player-bottom.inactive{
+    bottom: -50%;
+}
+
+.video-player-bottom-timeline{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 54%;
+    span{
+        user-select: all;
+        font-family: sans-serif;
+        font-weight: 400;
+        font-size: 23px;
+        color: #fff;
+    }
+}
+.video-player-bottom-timeline-range{
+    height: 10px;
+    accent-color: #fff;
+    border-radius: 24px;
+    border: none;
+    outline: none;
+    width: calc(100% - 126px);
+}
+.video-player-bottom-volume{
+    position: relative;
+}
+
+.video-player-bottom-volume-range{
+    cursor: pointer;
+    accent-color: #fff;
+    outline: none;
+    width: 80px;
+}
+.wrapper{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: rgba(45, 45, 45, 0.65);
+    position: absolute;
+    backdrop-filter: blur(9.812939643859863px);
+    left: 50%;
+    bottom: 200%;
+    transform: translateX(-50%) rotate(-90deg) !important;
+    transition: all 1s ease-in-out;
+    border-radius: 20px;
+    opacity: 0;
+}
+.video-player-bottom-volume:not(:hover) .wrapper{
+    pointer-events: none;
+}
+.video-player-bottom-volume:hover .wrapper{
+    opacity: 1;
+}
+
+.video-player-bottom-volume-cross{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%)
+    rotate(-45deg);
+    width: 0;
+    height: 5px;
+    background-color: #fff;
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%, 0 0, 100% 100%);
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+.video-player-bottom-volume-cross.muted{
+    width: 55px;
+}
+
+.outer{
+    opacity: 1;
+    transform: none !important;
+    position: static;
+    padding: 0;
+    background: none;
+    left: unset;
+    bottom: unset;
+    background-color: none;
+}
+.outer > .video-player-bottom-volume-range{
+    background-color: none;
+}
+
+.settings{
+    display: block;
+    position: absolute;
+    bottom: 0%;
+    right: 0%;
+    transform: translate(-50%,-50%);
+    opacity: 0;
+    transition: all 1s ease-in-out;
+    padding: 20px;
+    background-color: rgba(45, 45, 45, 0.65);
+    backdrop-filter: blur(9.812939643859863px);
+    div.inner{
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+        gap: 10px;
+        position: relative;
+         > button,> a{
+            display: block;
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            color: #fff;
+            
+        }
+        > button:hover, a:hover{
+            background-color: #4e4c4c;
+        }
+    }
+}
+
+.video-player-bottom-settings-speed, .video-player-bottom-settings-quality, .video-player-bottom-settings-sub{
+    background-color: rgba(45, 45, 45, 0.65);
+    backdrop-filter: blur(9.812939643859863px);
+    position: absolute;
+    padding: 20px;
+    width: 100%;
+    height: calc(100% + 40px);
+    top: -20px;
+    left: calc(100% + 20px);
+    button{
+        display: block;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 16px;
+        color: #fff;
+        margin-bottom: 10px;
+    }
+    > button:hover{
+        background-color: #4e4c4c;
+    }
+}
+.video-player-bottom-settings:hover .settings,
+.settings:hover {
+  opacity: 1;
+  pointer-events: auto;
+}
